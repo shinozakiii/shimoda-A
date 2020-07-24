@@ -14,8 +14,7 @@
 
 			try
 			{
-				//$pro_code=$_GET['procode'];
-				$_SESSION['code_text'] = "$pro_code_text";
+				$pro_code=$_GET['procode'];
 
 				$db = new PDO($dsn, $dbUser, $dbPass);
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -32,14 +31,14 @@
 				if($rec==false)
 				{
 					print'注文番号が正しくありません。';
-					print'<a href="reservation.php">戻る</a>';
+					print'<a href="order.php">戻る</a>';
 					print '<br />';
 					exit();
 				}
-				$_SESSION['code_text'] = "$pro_code_text";
+				$_SESSION['code'] = "$pro_code";
 				$pro_code_subject = $rec['code_subject'];
 				$pro_name_subject = $rec['name_subject'];
-				//$pro_code_text = $rec['code_text'];
+				$pro_code_text = $rec['code_text'];
 				$pro_name_text = $rec['name_text'];	
 				$pro_quantity = $rec['quantity'];	
 			}

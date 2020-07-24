@@ -10,8 +10,8 @@
 			require_once '_h.php';
 
 			session_start();
-			if (isset($_SESSION['code_text'])) {
-				$pro_code=$_SESSION['code_text'];
+			if (isset($_SESSION['code'])) {
+				$pro_code=$_SESSION['code'];
 			}
 			else{
 				print'注文番号が受信できません。';
@@ -23,6 +23,7 @@
 
 			try
 			{
+				
 
 				$db = new PDO($dsn, $dbUser, $dbPass);
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -41,7 +42,7 @@
 				$db=null;
 
 				print '注文番号';
-				print h($pro_code_text).' ';
+				print h($pro_code).' ';
 				print 'を予約しました。<br />';
 			}
 			catch(Exception$e)
