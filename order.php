@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>教科書一覧</title>
+		<title>注文一覧</title>
 	</head>
 	<body>
 		<?php
@@ -37,7 +37,7 @@
 
 				$db=null;
 
-				print '教科書一覧<br /><br />';
+				print '注文一覧<br /><br />';
 
 				while(true)
 				{
