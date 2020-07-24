@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>登録情報</title>
+		<title>登録情報aa</title>
 	</head>
 	<body>
 		<?php
