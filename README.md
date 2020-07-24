@@ -6,6 +6,7 @@ git remote add origin https://github.com/shinozakiii/shimoda-a.git
 
 git remote -v
 
-git push -f origin master
 
 
+git pull origin master
+git push origin master
