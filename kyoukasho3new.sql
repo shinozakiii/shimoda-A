@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2020-07-24 04:58:01
+-- 生成日時: 2020-07-24 10:09:09
 -- サーバのバージョン： 10.4.11-MariaDB
 -- PHP のバージョン: 7.4.6
 
@@ -31,7 +31,7 @@ USE `kyoukasho_yoyaku`;
 
 CREATE TABLE `dat_reserv` (
   `code_reservation` int(10) NOT NULL,
-  `name` int(10) NOT NULL,
+  `code_user` int(10) NOT NULL,
   `code_order` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -39,16 +39,21 @@ CREATE TABLE `dat_reserv` (
 -- テーブルのデータのダンプ `dat_reserv`
 --
 
-INSERT INTO `dat_reserv` (`code_reservation`, `name`, `code_order`) VALUES
-(3, 1, 1),
-(4, 0, 46),
+INSERT INTO `dat_reserv` (`code_reservation`, `code_user`, `code_order`) VALUES
 (5, 0, 46),
 (10, 0, 1),
 (11, 0, 1),
 (12, 0, 1),
-(14, 0, 1),
 (15, 0, 1),
-(16, 0, 1);
+(16, 0, 1),
+(18, 0, 1),
+(19, 0, 1),
+(20, 0, 1),
+(21, 0, 1),
+(22, 0, 2),
+(23, 0, 1),
+(24, 0, 2),
+(25, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -190,7 +195,7 @@ ALTER TABLE `mst_dat_user`
 -- テーブルのAUTO_INCREMENT `dat_reserv`
 --
 ALTER TABLE `dat_reserv`
-  MODIFY `code_reservation` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `code_reservation` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- テーブルのAUTO_INCREMENT `mst_dat_order`

@@ -14,7 +14,8 @@
 
 			try
 			{
-				$pro_code=$_GET['procode'];
+				//$pro_code=$_GET['procode'];
+				$_SESSION['code_text'] = "$pro_code_text";
 
 				$db = new PDO($dsn, $dbUser, $dbPass);
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -35,11 +36,12 @@
 					print '<br />';
 					exit();
 				}
-				$_SESSION['code'] = "$pro_code";
+				$_SESSION['code_text'] = "$pro_code_text";
 				$pro_code_subject = $rec['code_subject'];
 				$pro_name_subject = $rec['name_subject'];
-				$pro_code_text = $rec['code_text'];
+				//$pro_code_text = $rec['code_text'];
 				$pro_name_text = $rec['name_text'];	
+				$pro_quantity = $rec['quantity'];	
 			}
 			catch(Exception $e)
 			{

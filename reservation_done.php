@@ -10,8 +10,8 @@
 			require_once '_h.php';
 
 			session_start();
-			if (isset($_SESSION['code'])) {
-				$pro_code=$_SESSION['code'];
+			if (isset($_SESSION['code_text'])) {
+				$pro_code=$_SESSION['code_text'];
 			}
 			else{
 				print'注文番号が受信できません。';
@@ -23,12 +23,17 @@
 
 			try
 			{
+
 				$db = new PDO($dsn, $dbUser, $dbPass);
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-				//説明
+				$sql='UPDATE mst_dat_text
+				SET quantity = quantity - 1
+				WHERE code_text = :$pro_code_text';
+
 				$sql='INSERT INTO dat_reserv(code_order) VALUES (:code_order)';
+
 				$prepare=$db->prepare($sql);
 				$prepare->bindValue(':code_order', $pro_code, PDO::PARAM_STR);
 				$prepare->execute();
@@ -36,7 +41,7 @@
 				$db=null;
 
 				print '注文番号';
-				print h($pro_code).' ';
+				print h($pro_code_text).' ';
 				print 'を予約しました。<br />';
 			}
 			catch(Exception$e)
@@ -45,6 +50,6 @@
 	 			exit();
 			}
 		?>
-		<a href="reservation.php">戻る</a>
+		<a href="order.php">戻る</a>
 	</body>
 </html>
