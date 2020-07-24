@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2020-07-24 10:09:09
+-- 生成日時: 2020-07-24 16:42:03
 -- サーバのバージョン： 10.4.11-MariaDB
 -- PHP のバージョン: 7.4.6
 
@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- データベース: `kyoukasho_yoyaku`
+-- データベース: `shimodaa`
 --
-CREATE DATABASE IF NOT EXISTS `kyoukasho_yoyaku` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `kyoukasho_yoyaku`;
+CREATE DATABASE IF NOT EXISTS `shimodaa` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `shimodaa`;
 
 -- --------------------------------------------------------
 
@@ -31,7 +31,7 @@ USE `kyoukasho_yoyaku`;
 
 CREATE TABLE `dat_reserv` (
   `code_reservation` int(10) NOT NULL,
-  `code_user` int(10) NOT NULL,
+  `name` int(10) NOT NULL,
   `code_order` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -39,21 +39,10 @@ CREATE TABLE `dat_reserv` (
 -- テーブルのデータのダンプ `dat_reserv`
 --
 
-INSERT INTO `dat_reserv` (`code_reservation`, `code_user`, `code_order`) VALUES
-(5, 0, 46),
-(10, 0, 1),
-(11, 0, 1),
-(12, 0, 1),
-(15, 0, 1),
-(16, 0, 1),
-(18, 0, 1),
-(19, 0, 1),
-(20, 0, 1),
-(21, 0, 1),
-(22, 0, 2),
-(23, 0, 1),
-(24, 0, 2),
-(25, 0, 1);
+INSERT INTO `dat_reserv` (`code_reservation`, `name`, `code_order`) VALUES
+(3, 1, 1),
+(18, 4, 1),
+(19, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -73,7 +62,9 @@ CREATE TABLE `mst_dat_order` (
 
 INSERT INTO `mst_dat_order` (`code_order`, `code_subject`, `code_text`) VALUES
 (1, 1, 1),
-(2, 2, 2);
+(2, 2, 2),
+(3, 3, 1),
+(4, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -92,9 +83,9 @@ CREATE TABLE `mst_dat_sub` (
 --
 
 INSERT INTO `mst_dat_sub` (`code_subject`, `name_subject`, `name_teacher`) VALUES
-(1, '科目1', '教師1'),
-(2, '科目2', '教師2'),
-(3, '科目3', '教師3');
+(1, 'Webプログラミング', '矢吹先生'),
+(2, 'C++プログラミング', '田隈先生'),
+(3, 'プログラミング概論', '小笠原先生');
 
 -- --------------------------------------------------------
 
@@ -151,7 +142,8 @@ CREATE TABLE `mst_dat_user` (
 INSERT INTO `mst_dat_user` (`code_user`, `name_user`, `student_id`, `mail_address`, `password`) VALUES
 (1, '佐藤', 1842000, '', 'abc'),
 (2, '田中', 1942000, '', 'abc'),
-(3, '鈴木', 2042000, '', 'abc');
+(3, '鈴木', 2042000, '', 'abc'),
+(4, '下田', 1842999, '', '1234');
 
 --
 -- ダンプしたテーブルのインデックス
@@ -195,13 +187,13 @@ ALTER TABLE `mst_dat_user`
 -- テーブルのAUTO_INCREMENT `dat_reserv`
 --
 ALTER TABLE `dat_reserv`
-  MODIFY `code_reservation` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `code_reservation` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- テーブルのAUTO_INCREMENT `mst_dat_order`
 --
 ALTER TABLE `mst_dat_order`
-  MODIFY `code_order` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `code_order` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- テーブルのAUTO_INCREMENT `mst_dat_sub`
@@ -219,7 +211,7 @@ ALTER TABLE `mst_dat_text`
 -- テーブルのAUTO_INCREMENT `mst_dat_user`
 --
 ALTER TABLE `mst_dat_user`
-  MODIFY `code_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `code_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

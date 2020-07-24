@@ -5,6 +5,8 @@
 		<title>教科書表示</title>
 	</head>
 	<body>
+
+	この科目では以下の教科書を使います。<br /><br />
 		<?php
 			require_once('_database_conf.php');
 			require_once('_h.php');
@@ -90,7 +92,15 @@
 		<br />
 
 		<?php
+<<<<<<< HEAD:sub_search_link.php
+<<<<<<< HEAD
+			print '<form method="post" action="order.php">';
+=======
 			print '<form method="post" action="reservation.php">';
+>>>>>>> aa
+=======
+			print '<form method="post" action="reservation.php">';
+>>>>>>> 79f38e78ace014d7d7b95b94514e11ad38a91c99:shimodaa/sub_search_link_old.php
 				$_SESSION['code_text'] = "$pro_code";
 				print '<input type="submit" value="予約する">';
 				print '</br>';
