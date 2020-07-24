@@ -1,6 +1,6 @@
 <?php
 
-//商品表示のプルダウン入力
+//商品表示のプルダウン入力 
 function pulldown_disp()
 {
 	print '<select name="procode">';
