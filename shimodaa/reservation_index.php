@@ -9,28 +9,19 @@
 			require_once '_database_conf.php';
 			require_once '_h.php';
 
-			session_start();
-			if (isset($_SESSION['user_id'])) {
-				$pro_name=$_SESSION['user_id'];
-			}
-			else{
-				print'利用者コードが受信できません。';
-				exit();
-			}			
-
 			try{
 				$db = new PDO($dsn, $dbUser, $dbPass);
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-				$sql='SELECT * FROM dat_reserv WHERE name=:code';
-
+				$sql='SELECT * FROM dat_reserv';
+//				$sql='SELECT code,name,price FROM mst_product WHERE price > 100';
+//				$sql='SELECT code,name,price FROM mst_product ORDER BY price DESC';
 				$prepare=$db->prepare($sql);
-				$prepare->bindValue(':code', $pro_name, PDO::PARAM_INT);
 				$prepare->execute();
+				$db=null;
 
-
-				print 'あなたが予約した教科書一覧<br /><br />';
+				print '教科書<br /><br />';
 
 				while(true)
 				{
@@ -39,37 +30,20 @@
 					{
 						break;
 					}
-					$sql='SELECT * FROM mst_dat_order 
-					LEFT OUTER JOIN mst_dat_sub ON mst_dat_order.code_subject = mst_dat_sub.code_subject 
-					LEFT OUTER JOIN mst_dat_text ON mst_dat_order.code_text = mst_dat_text.code_text
-					WHERE mst_dat_order.code_order=:code';
-					$stmt=$db->prepare($sql);
-					$stmt->bindValue(':code', $rec['code_order'], PDO::PARAM_INT);
-					$stmt->execute();
-
-					$rec2=$stmt->fetch(PDO::FETCH_ASSOC);
-
 					print('予約番号：');
 					print h($rec['code_reservation']).'　　';
+					print('ユーザー番号：');
+					print h($rec['name']).'　　';
 					print('注文番号：');
 					print h($rec['code_order']).'　　';
-					print('科目名：');
-					print h($rec2['name_subject']).'　　';
-					print('教員名：');
-					print h($rec2['name_teacher']).'　　';
-					print('教科書名：');
-					print h($rec2['name_text']).'　　';
 					print '<br />';
-
 				}
-				print '<br />';
-				print '<form method="get" action="reservation_cancel.php">';
-				print '予約削除：予約番号';
-				print '<input type="text" name="procode" style="width:20px">';
-				print '<input type="submit" value="決定">';
-				print '</form>';
-
-				$db=null;
+					print '<br />';
+					print '<form method="get" action="reservation_cancel.php">';
+					print '予約削除：予約番号';
+					print '<input type="text" name="procode" style="width:20px">';
+					print '<input type="submit" value="決定">';
+					print '</form>';
 			}
 			catch (Exception $e)
 			{

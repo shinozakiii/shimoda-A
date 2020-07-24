@@ -9,7 +9,7 @@
 		<br />
 
 		<form method="post" action="admin_add_check.php" enctype="multipart/form-data">
-			教科書名を入力してください。<br />
+			名前を入力してください。<br />
 			<input type="text" name="name_text" style="width:100px"><br />
 			価格を入力してください。<br />
 			<input type="text" name="price" style="width:50px"><br />
@@ -19,8 +19,6 @@
 			<input type="text" name="name_publisher" style="width:100px"><br />
 			出版年を入力してください。<br />
 			<input type="text" name="name_year" style="width:100px"><br />
-			在庫数を入力してください。<br />
-			<input type="text" name="quantity" style="width:100px"><br />
 			日付を入力してください。<br />
 			<input type="date" name="date" style="width:100px"><br />
 			画像を選んでください。<br />

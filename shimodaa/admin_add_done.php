@@ -48,13 +48,6 @@
 				print'出版年が受信できません。。';
 				exit();
 			}
-			if (isset($_SESSION['quantity'])) {
-				$pro_quantity=$_SESSION['quantity'];
-			}
-			else{
-				print'名前が受信できません。。';
-				exit();
-			}
 			if (isset($_SESSION['date'])) {
 				$pro_date=$_SESSION['date'];
 			}
@@ -78,14 +71,13 @@
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-				$sql='INSERT INTO mst_dat_text(name_text,price,name_auther,name_publisher,name_year,quantity,date,gazou) VALUES (:name_text,:price,:name_auther,:name_publisher,:name_year,:quantity,:date,:gazou)';
+				$sql='INSERT INTO mst_dat_text(name_text,price,name_auther,name_publisher,name_year,date,gazou) VALUES (:name_text,:price,:name_auther,:name_publisher,:name_year,:date,:gazou)';
 				$stmt=$db->prepare($sql);
 				$stmt->bindValue(':name_text', $pro_name, PDO::PARAM_STR);
 				$stmt->bindValue(':price', $pro_price, PDO::PARAM_INT);
 				$stmt->bindValue(':name_auther', $pro_auther, PDO::PARAM_STR);
 				$stmt->bindValue(':name_publisher', $pro_publisher, PDO::PARAM_STR);
 				$stmt->bindValue(':name_year', $pro_year, PDO::PARAM_STR);
-				$stmt->bindValue(':quantity', $pro_quantity, PDO::PARAM_STR);
 				$stmt->bindValue(':date', $pro_date, PDO::PARAM_STR);
 				$stmt->bindValue(':gazou', $pro_gazou, PDO::PARAM_STR);
 				$stmt->execute();

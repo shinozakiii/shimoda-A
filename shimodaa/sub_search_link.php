@@ -2,83 +2,103 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>教科書一覧</title>
+		<title>教科書表示</title>
 	</head>
 	<body>
+
+	この科目では以下の教科書を使います。<br /><br />
 		<?php
-			require_once '_database_conf.php';
-			require_once '_h.php';
+			require_once('_database_conf.php');
+			require_once('_h.php');
+
+			session_start();
 
 			//データ受取
 			$pro_code=$_GET['procode'];
 
+			//DB処理
 			try
 			{
+				//DB接続
 				$db = new PDO($dsn, $dbUser, $dbPass);
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				/*
-				$sql='INSERT INTO dat_order(code_subject, code_text)
-				SELECT dat_sub.code_subject, dat_text.code_text FROM dat_sub, dat_text';
-				*/
-				$sql='SELECT * FROM mst_dat_order 
-				LEFT OUTER JOIN mst_dat_sub ON mst_dat_order.code_subject = mst_dat_sub.code_subject 
-				LEFT OUTER JOIN mst_dat_text ON mst_dat_order.code_text = mst_dat_text.code_text
-				WHERE mst_dat_order.code_subject=:code';
-				/*******************************************************************************
-				$sql='SELECT distinct code_subject, code_text FROM dat_order ';
-				$sql='SELECT code_order FROM dat_order';
-				select * from テーブル名1
-				left outer join テーブル名2
-				on テーブル名1.フィールド名 = テーブル名2.フィールド名;
-				**************************************************************************************/
 
-//				$sql='SELECT code,name,price FROM mst_product WHERE price > 100';
-//				$sql='SELECT code,name,price FROM mst_product ORDER BY price DESC';
+				//DB読取
+				$sql='SELECT * FROM mst_dat_text WHERE code_text=:code_text';
+				$stmt=$db->prepare($sql);
+				$stmt->bindValue(':code_text', $pro_code, PDO::PARAM_INT);
+				$stmt->execute();
 
-				$prepare=$db->prepare($sql);
-				$prepare->bindValue(':code', $pro_code, PDO::PARAM_INT);
-				$prepare->execute();
-
-
-				$db=null;
-
-				print '教科書一覧<br /><br />';
-
-				while(true)
+				$rec=$stmt->fetch(PDO::FETCH_ASSOC);
+				$pro_name=$rec['name_text'];
+				$pro_date=$rec['date'];
+				$pro_price=$rec['price'];
+                $pro_auther=$rec['name_auther'];
+                $pro_publisher=$rec['name_publisher'];
+                $pro_year=$rec['name_year'];
+                $pro_quantity=$rec['quantity'];
+				$pro_gazou_name=$rec['gazou'];
+				if($pro_gazou_name=='')
 				{
-					$rec=$prepare->fetch(PDO::FETCH_ASSOC);
-					if($rec==false)
-					{
-						break;
-					}
-//					print '注文番号：';
-//					print h($rec['code_order']).'　';
-//					print '科目番号：';
-//					print h($rec['code_subject']).'　';
-					print '科目名：';
-					print h($rec['name_subject']).'　';
-					print '教員名：';
-					print h($rec['name_teacher']).'　';
-//					print '教科書番号：';
-//					print h($rec['code_text']).'　';
-					print '教科書名：';
-					print h($rec['name_text']).'　';
-					print '<br />';
+					$disp_gazou='';
 				}
-//					print '<br />';
-//					print '<form method="get" action="reservation_check.php">';
-//					print '教科書予約：番号';
-//					print '<input type="text" name="procode" style="width:20px">';
-//					print '<input type="submit" value="決定">';
-//					print '</form>';
-					print '<input type="button" onclick="history.back()" value="戻る">';
+				else
+				{
+					$disp_gazou='<img src="gazou/'.$pro_gazou_name.'" height="300">';
+				}
+
+				//DB切断
+				$dbh=null;
+
 			}
+			//DBエラー
 			catch (Exception $e)
 			{
 				echo 'エラーが発生しました。内容: ' . h($e->getMessage());
 	 			exit();
 			}
-		?>	
+		?>
+
+		教科書表示<br />
+		<br />
+		教科書コード<br />
+		<?php print  h($pro_code); ?>
+		<br />
+		教科書名<br />
+		<?php print  h($pro_name); ?>
+		<br />
+		発売日<br />
+		<?php print  h($pro_date); ?>
+		<br />
+		価格<br />
+		<?php print  h($pro_price); ?>円
+        <br />
+        著者<br />
+		<?php print  h($pro_auther); ?>
+        <br />
+        出版社<br />
+		<?php print  h($pro_publisher); ?>
+        <br />
+        出版年<br />
+		<?php print  h($pro_year); ?>
+        <br />
+        在庫数<br />
+		<?php print  h($pro_quantity); ?>
+		<br />
+		画像<br />
+		<?php print  $disp_gazou; ?>
+		<br />
+		<br />
+
+		<?php
+			print '<form method="post" action="reservation.php">';
+				$_SESSION['code_text'] = "$pro_code";
+				print '<input type="submit" value="予約する">';
+				print '</br>';
+				print '</br>';
+				print '<input type="button" onclick="history.back()" value="戻る">';
+			print '</form>';
+		?>
 	</body>
-</html>	
+</html>

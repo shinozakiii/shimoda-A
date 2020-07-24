@@ -14,12 +14,12 @@
 
 			$max_size=4*1024*1024;
 
+
 			$pro_name=$_POST['name_text'];
 			$pro_price=$_POST['price'];
 			$pro_auther=$_POST['name_auther'];
 			$pro_publisher=$_POST['name_publisher'];
 			$pro_year=$_POST['name_year'];
-			$pro_quantity=$_POST['quantity'];
 			$pro_date=$_POST['date'];
 			$pro_gazou=$_FILES['gazou'];
 
@@ -44,7 +44,6 @@
 				print h($pro_price);
 				print '<br />';
 			}
-
 			if($pro_auther=='')
 			{
 				print '著者が入力されていません。<br />';
@@ -78,17 +77,6 @@
 				print '<br />';
 			}
 
-			if($pro_quantity=='')
-			{
-				print '在庫数が入力されていません。<br />';
-			}
-			else
-			{
-				print '在庫数:';
-				print  h($pro_quantity);
-				print '<br />';
-			}
-
 			if($pro_date=='')
 			{
 				print '日付が入力されていません。<br />';
@@ -114,9 +102,11 @@
 				}
 			}
 
+			
 
 
-			if($pro_name=='' || $pro_price==''|| $pro_auther==''|| $pro_publisher==''|| $pro_year==''|| $pro_quantity==''|| $pro_date==''|| $pro_gazou=='')
+
+			if($pro_name=='' || $pro_price==''|| $pro_auther==''|| $pro_publisher==''|| $pro_year==''|| $pro_date==''|| $pro_gazou=='')
 			{
 				print '<form>';
 				print '<input type="button" onclick="history.back()" value="戻る">';
@@ -135,9 +125,9 @@
 				$_SESSION['name_auther'] = "$pro_auther";
 				$_SESSION['name_publisher'] = "$pro_publisher";
 				$_SESSION['name_year'] = "$pro_year";
-				$_SESSION['quantity'] = "$pro_quantity";
 				$_SESSION['date'] = "$pro_date";
 				$_SESSION['gazou'] = $pro_gazou['name'];
+
 				print '<input type="button" onclick="history.back()" value="戻る">';
 				print '<input type="submit" value="登録">';
 				print '</form>';

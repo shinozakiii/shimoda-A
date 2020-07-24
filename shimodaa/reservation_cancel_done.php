@@ -18,8 +18,8 @@
 				print'予約番号が受信できません。';
 				exit();
 			}
-//			session_unset();// セッション変数をすべて削除
-//			session_destroy();// セッションIDおよびデータを破棄
+			session_unset();// セッション変数をすべて削除
+			session_destroy();// セッションIDおよびデータを破棄
 
 			try
 			{

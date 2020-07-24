@@ -90,13 +90,13 @@
 		<br />
 
 		<?php
-//			print '<form method="post" action="reservation.php">';
-//				$_SESSION['code_text'] = "$pro_code";
-//				print '<input type="submit" value="予約する">';
-//				print '</br>';
-//				print '</br>';
+			print '<form method="post" action="reservation.php">';
+				$_SESSION['code_text'] = "$pro_code";
+				print '<input type="submit" value="予約する">';
+				print '</br>';
+				print '</br>';
 				print '<input type="button" onclick="history.back()" value="戻る">';
-//			print '</form>';
+			print '</form>';
 		?>
 	</body>
 </html>

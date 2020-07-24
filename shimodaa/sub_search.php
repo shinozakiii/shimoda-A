@@ -9,7 +9,7 @@
 			require_once('_database_conf.php');
 			require_once('_h.php');
 
-//			session_cache_expire(30);// 有効期間30分
+			session_cache_expire(30);// 有効期間30分
 			session_start();
 
 			//DB処理
