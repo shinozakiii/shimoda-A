@@ -22,7 +22,7 @@
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-				$sql='SELECT * FROM mst_dat_order, dat_reserv, mst_dat_user WHERE dat_reserv.code_reservation = :code';
+				$sql='SELECT * FROM dat_reserv WHERE code_reservation=:code';
 				$stmt=$db->prepare($sql);
 				$stmt->bindValue(':code', $pro_code, PDO::PARAM_INT);
 				$stmt->execute();
@@ -41,7 +41,7 @@
 
 				$_SESSION['code'] = "$pro_code";
 				$pro_code_reservation = $rec['code_reservation'];
-				$pro_code_user = $rec['code_user'];
+//				$pro_code_user = $rec['name_user'];
 				$pro_code_order = $rec['code_order'];
 			}
 			catch(Exception $e)
@@ -54,8 +54,10 @@
 		<br />
         予約番号：
         <?php print '　　';print $pro_code_reservation; ?><br>
+<!--
         ユーザー番号：
         <?php print '　';print $pro_code_user ?><br>
+-->
         注文番号：
         <?php print '　　';print $pro_code_order ?><br><br>
 		この予約を削除してよろしいですか？<br />

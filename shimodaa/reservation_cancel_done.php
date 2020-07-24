@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>教科書予約</title>
+		<title>予約削除</title>
 	</head>
 	<body>
 		<?php
@@ -13,37 +13,29 @@
 			if (isset($_SESSION['code'])) {
 				$pro_code=$_SESSION['code'];
 			}
+			
 			else{
-				print'注文番号が受信できません。';
+				print'予約番号が受信できません。';
 				exit();
 			}
-
-			session_unset();// セッション変数をすべて削除
-			session_destroy();// セッションIDおよびデータを破棄
+//			session_unset();// セッション変数をすべて削除
+//			session_destroy();// セッションIDおよびデータを破棄
 
 			try
 			{
-				
-
 				$db = new PDO($dsn, $dbUser, $dbPass);
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-				$sql='UPDATE mst_dat_text
-				SET quantity = quantity - 1
-				WHERE code_text = :$pro_code_text';
-
-				$sql='INSERT INTO dat_reserv(code_order) VALUES (:code_order)';
-
+				$sql='DELETE FROM dat_reserv WHERE code_reservation = :code';
 				$prepare=$db->prepare($sql);
-				$prepare->bindValue(':code_order', $pro_code, PDO::PARAM_STR);
+				$prepare->bindValue(':code', $pro_code, PDO::PARAM_INT);
 				$prepare->execute();
 
 				$db=null;
 
-				print '注文番号';
-				print h($pro_code).' ';
-				print 'を予約しました。<br />';
+				print '削除しました。<br />';
+
 			}
 			catch(Exception$e)
 			{
@@ -51,6 +43,6 @@
 	 			exit();
 			}
 		?>
-		<a href="order.php">戻る</a>
+		<a href="reservation_index.php">戻る</a>
 	</body>
 </html>

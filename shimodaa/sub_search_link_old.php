@@ -5,6 +5,8 @@
 		<title>教科書表示</title>
 	</head>
 	<body>
+
+	この科目では以下の教科書を使います。<br /><br />
 		<?php
 			require_once('_database_conf.php');
 			require_once('_h.php');

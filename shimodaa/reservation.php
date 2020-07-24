@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>注文一覧</title>
+		<title>教科書一覧</title>
 	</head>
 	<body>
 		<?php
@@ -21,10 +21,15 @@
 				LEFT OUTER JOIN mst_dat_sub ON mst_dat_order.code_subject = mst_dat_sub.code_subject 
 				LEFT OUTER JOIN mst_dat_text ON mst_dat_order.code_text = mst_dat_text.code_text';
 				/*******************************************************************************
+				$sql='SELECT distinct code_subject, code_text FROM dat_order ';
+				$sql='SELECT code_order FROM dat_order';
 				select * from テーブル名1
 				left outer join テーブル名2
 				on テーブル名1.フィールド名 = テーブル名2.フィールド名;
 				**************************************************************************************/
+
+//				$sql='SELECT code,name,price FROM mst_product WHERE price > 100';
+//				$sql='SELECT code,name,price FROM mst_product ORDER BY price DESC';
 
 				$prepare=$db->prepare($sql);
 				$prepare->execute();
@@ -32,7 +37,7 @@
 
 				$db=null;
 
-				print '注文一覧<br /><br />';
+				print '教科書一覧<br /><br />';
 
 				while(true)
 				{
@@ -43,21 +48,21 @@
 					}
 					print '注文番号：';
 					print h($rec['code_order']).'　';
-					print '科目番号：';
-					print h($rec['code_subject']).'　';
+//					print '科目番号：';
+//					print h($rec['code_subject']).'　';
 					print '科目名：';
 					print h($rec['name_subject']).'　';
-					print '教科書番号：';
-					print h($rec['code_text']).'　';
+					print '教員名：';
+					print h($rec['name_teacher']).'　';
+//					print '教科書番号：';
+//					print h($rec['code_text']).'　';
 					print '教科書名：';
 					print h($rec['name_text']).'　';
-					print '在庫：';
-					print h($rec['quantity']).'　';
 					print '<br />';
 					}
 					print '<br />';
-					print '<form method="get" action="reservation.php">';
-					print '教科書予約：番号';
+					print '<form method="get" action="reservation_check.php">';
+					print '教科書予約：注文番号';
 					print '<input type="text" name="procode" style="width:20px">';
 					print '<input type="submit" value="決定">';
 					print '</form>';
@@ -68,5 +73,6 @@
 	 			exit();
 			}
 		?>
+		<a href="my_page.php">マイページへ</a>	
 	</body>
 </html>	

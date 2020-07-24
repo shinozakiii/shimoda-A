@@ -5,8 +5,6 @@
 		<title>教科書表示</title>
 	</head>
 	<body>
-
-	この科目では以下の教科書を使います。<br /><br />
 		<?php
 			require_once('_database_conf.php');
 			require_once('_h.php');
@@ -92,13 +90,13 @@
 		<br />
 
 		<?php
-			print '<form method="post" action="order.php">';
-				$_SESSION['code_text'] = "$pro_code";
-				print '<input type="submit" value="予約する">';
-				print '</br>';
-				print '</br>';
+//			print '<form method="post" action="reservation.php">';
+//				$_SESSION['code_text'] = "$pro_code";
+//				print '<input type="submit" value="予約する">';
+//				print '</br>';
+//				print '</br>';
 				print '<input type="button" onclick="history.back()" value="戻る">';
-			print '</form>';
+//			print '</form>';
 		?>
 	</body>
 </html>
