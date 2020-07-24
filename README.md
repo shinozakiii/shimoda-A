@@ -24,4 +24,5 @@ git push origin master
 
 https://github.com/shinozakiii/shimoda-a.git開いて 
 
+
 変更できてたらOK！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
