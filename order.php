@@ -59,7 +59,7 @@
 					print '<br />';
 					}
 					print '<br />';
-					print '<form method="get" action="reservation_.php">';
+					print '<form method="get" action="reservation.php">';
 					print '教科書予約：番号';
 					print '<input type="text" name="procode" style="width:20px">';
 					print '<input type="submit" value="決定">';
