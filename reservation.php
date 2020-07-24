@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>教科書予約aaa</title>
+		<title>教科書予約/title>
 	</head>
 	<body>
 		<?php
