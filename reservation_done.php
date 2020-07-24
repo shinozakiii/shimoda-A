@@ -17,21 +17,20 @@
 				print'注文番号が受信できません。';
 				exit();
 			}
-
+			//print $_SESSION['code_user'];
 			session_unset();// セッション変数をすべて削除
 			session_destroy();// セッションIDおよびデータを破棄
 
 			try
 			{
 				
-
 				$db = new PDO($dsn, $dbUser, $dbPass);
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 				$sql='UPDATE mst_dat_text
-				SET quantity = quantity - 1
-				WHERE code_text = :$pro_code_text';
+				SET quantity = quantity - 1';
+				//WHERE code_text = :$rec['code_text']';
 
 				$sql='INSERT INTO dat_reserv(code_order) VALUES (:code_order)';
 

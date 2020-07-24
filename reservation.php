@@ -35,6 +35,7 @@
 					print '<br />';
 					exit();
 				}
+				//print $_SESSION['code_user'];
 				$_SESSION['code'] = "$pro_code";
 				$pro_code_subject = $rec['code_subject'];
 				$pro_name_subject = $rec['name_subject'];
