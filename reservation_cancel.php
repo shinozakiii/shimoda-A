@@ -41,7 +41,11 @@
 
 				$_SESSION['code'] = "$pro_code";
 				$pro_code_reservation = $rec['code_reservation'];
+<<<<<<< HEAD
 				$pro_code_user = $rec['code_user'];
+=======
+				$pro_code_user = $rec['name_user'];
+>>>>>>> aa
 				$pro_code_order = $rec['code_order'];
 			}
 			catch(Exception $e)

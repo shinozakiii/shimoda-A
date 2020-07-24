@@ -92,7 +92,11 @@
 		<br />
 
 		<?php
+<<<<<<< HEAD
 			print '<form method="post" action="order.php">';
+=======
+			print '<form method="post" action="reservation.php">';
+>>>>>>> aa
 				$_SESSION['code_text'] = "$pro_code";
 				print '<input type="submit" value="予約する">';
 				print '</br>';

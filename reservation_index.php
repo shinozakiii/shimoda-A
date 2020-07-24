@@ -15,6 +15,11 @@
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 				$sql='SELECT * FROM dat_reserv';
+<<<<<<< HEAD
+=======
+//				$sql='SELECT code,name,price FROM mst_product WHERE price > 100';
+//				$sql='SELECT code,name,price FROM mst_product ORDER BY price DESC';
+>>>>>>> aa
 				$prepare=$db->prepare($sql);
 				$prepare->execute();
 				$db=null;
@@ -31,7 +36,11 @@
 					print('予約番号：');
 					print h($rec['code_reservation']).'　　';
 					print('ユーザー番号：');
+<<<<<<< HEAD
 					print h($rec['code_user']).'　　';
+=======
+					print h($rec['name']).'　　';
+>>>>>>> aa
 					print('注文番号：');
 					print h($rec['code_order']).'　　';
 					print '<br />';

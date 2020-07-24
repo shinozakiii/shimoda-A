@@ -23,18 +23,26 @@
 
 			try
 			{
+<<<<<<< HEAD
 				
 
+=======
+>>>>>>> aa
 				$db = new PDO($dsn, $dbUser, $dbPass);
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+<<<<<<< HEAD
 				$sql='UPDATE mst_dat_text
 				SET quantity = quantity - 1
 				WHERE code_text = :$pro_code_text';
 
 				$sql='INSERT INTO dat_reserv(code_order) VALUES (:code_order)';
 
+=======
+				//説明
+				$sql='INSERT INTO dat_reserv(code_order) VALUES (:code_order)';
+>>>>>>> aa
 				$prepare=$db->prepare($sql);
 				$prepare->bindValue(':code_order', $pro_code, PDO::PARAM_STR);
 				$prepare->execute();
@@ -51,6 +59,10 @@
 	 			exit();
 			}
 		?>
+<<<<<<< HEAD
 		<a href="order.php">戻る</a>
+=======
+		<a href="reservation.php">戻る</a>
+>>>>>>> aa
 	</body>
 </html>
