@@ -1,4 +1,4 @@
-たぶん
+たぶん,
 
 git clone https://github.com/shinozakiii/shimoda-a.git
 
