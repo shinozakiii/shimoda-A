@@ -8,6 +8,7 @@
 		<?php
 			require_once '_database_conf.php';
 			require_once '_h.php';
+
 			session_start();
 			if (isset($_SESSION['code'])) {
 				$pro_code=$_SESSION['code'];
@@ -17,8 +18,6 @@
 				print'予約番号が受信できません。';
 				exit();
 			}
-			print'予約番号';
-			print$_SESSION['code'];
 			session_unset();// セッション変数をすべて削除
 			session_destroy();// セッションIDおよびデータを破棄
 
@@ -35,7 +34,7 @@
 
 				$db=null;
 
-				print 'を削除しました。<br />';
+				print '削除しました。<br />';
 
 			}
 			catch(Exception$e)
