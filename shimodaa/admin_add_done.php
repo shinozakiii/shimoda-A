@@ -52,7 +52,7 @@
 				$pro_date=$_SESSION['date'];
 			}
 			else{
-				print'名前が受信できません。。';
+				print'日付が受信できません。。';
 				exit();
 			}
 			if (isset($_SESSION['gazou'])) {

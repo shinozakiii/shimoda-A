@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>教科書修正</title>
+		<title>商品修正</title>
 	</head>
 	<body>
 		<?php
@@ -12,6 +12,10 @@
 			session_cache_expire(30);// 有効期間30分
 			session_start();
 
+			
+			
+
+			//DB処理
 			try
 			{
 				$pro_code=$_GET['procode'];
@@ -26,34 +30,61 @@
 				$stmt->execute();
 
 				$rec=$stmt->fetch(PDO::FETCH_ASSOC);
-				$dbh=null;
+				
 
 				$_SESSION['code_text'] = "$pro_code";
 
 				$pro_name = $rec['name_text'];
 				$pro_price = $rec['price'];
+				$pro_auther = $rec['name_auther'];
+				$pro_publisher = $rec['name_publisher'];
+				$pro_year = $rec['name_year'];
+				$pro_date = $rec['date'];
+				$pro_gazou = $rec['gazou'];
+
+				$dbh=null;
+
+				$disp_gazou='<img src="../gazou'.$pro_gazou.'">';
+				$_SESSION['gazou_name'] = "$pro_gazou";
+
+				
 			}
-			catch(Exception $e)
+			
+			//DBエラー
+			catch (Exception $e)
 			{
 				echo 'エラーが発生しました。内容: ' . h($e->getMessage());
 	 			exit();
 			}
 		?>
 
-		教科書修正<br />
+		商品修正<br />
 		<br />
-		教科書コード<br />
-		<?php print $pro_code; ?><br />
+		商品コード<br />
+		<?php print h($pro_code); ?>
+		<br />
+		<br />
+		<form method="post" action="admin_edit_check.php" enctype="multipart/form-data">
 
-		<form method="post" action="admin_edit_check.php">
-		教科書名<br />
-		<input type="text" name="name_text" style="width:200px" value="<?php print $pro_name; ?>"><br />
-		価格<br />
-		<input type="text" name="price" style="width:50px" value="<?php print $pro_price; ?>">円<br />
-		<br />
-		<input type="button" onclick="history.back()" value="戻る">
-		<input type="submit" value="ＯＫ">
+			商品名<br />
+			<input type="text" name="name_text" style="width:400px" value="<?php print $pro_name; ?>"><br />
+			日付<br />
+			<input type="date" name="date" value="<?php print $pro_date; ?>"><br />
+			価格<br />
+			<input type="text" name="price" style="width:100px" value="<?php print $pro_price; ?>"> 円<br />
+			著者<br />
+			<input type="text" name="name_auther" style="width:400px" value="<?php print $pro_auther; ?>"><br />
+			出版社<br />
+			<input type="text" name="name_publisher" style="width:400px" value="<?php print $pro_publisher; ?>"><br />
+			出版年<br />
+			<input type="text" name="name_year" style="width:400px" value="<?php print $pro_year; ?>"><br />
+			<br />
+			<?php print $disp_gazou; ?>
+			画像を選んでください。<br />
+			<input type="file" name="gazou" style="width:400px"><br />
+			<br />
+			<input type="button" onclick="history.back()" value="戻る">
+			<input type="submit" value="ＯＫ">
 		</form>
-
 	</body>
 </html>

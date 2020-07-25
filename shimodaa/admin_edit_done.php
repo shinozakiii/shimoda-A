@@ -31,6 +31,42 @@
 				print'価格が受信できません。';
 				exit();
 			}
+			if (isset($_SESSION['name_auther'])) {
+				$pro_auther=$_SESSION['name_auther'];
+			}
+			else{
+				print'著者が受信できません。';
+				exit();
+			}
+			if (isset($_SESSION['name_publisher'])) {
+				$pro_publisher=$_SESSION['name_publisher'];
+			}
+			else{
+				print'出版社が受信できません。';
+				exit();
+			}
+			if (isset($_SESSION['name_year'])) {
+				$pro_year=$_SESSION['name_year'];
+			}
+			else{
+				print'出版年が受信できません。';
+				exit();
+			}
+			if (isset($_SESSION['date'])) {
+				$pro_date=$_SESSION['date'];
+			}
+			else{
+				print'日付が受信できません。';
+				exit();
+			}
+			if (isset($_SESSION['gazou'])) {
+				$pro_gazou=$_SESSION['gazou'];
+			}
+			else{
+				print'日付が受信できません。';
+				exit();
+			}
+
 			session_unset();// セッション変数をすべて削除
 			session_destroy();// セッションIDおよびデータを破棄
 
@@ -40,11 +76,16 @@
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-				$sql='UPDATE mst_dat_text SET name_text=:name_text,price=:price WHERE code_text=:code_text';
+				$sql='UPDATE mst_dat_text SET name_text=:name_text,price=:price,name_auther=:name_auther,name_publisher=:name_publisher,name_year=:name_year,date=:date,gazou=:gazou WHERE code_text=:code_text';
 				$prepare=$db->prepare($sql);
 				$prepare->bindValue(':name_text', $pro_name, PDO::PARAM_STR);
 				$prepare->bindValue(':price', $pro_price, PDO::PARAM_INT);
 				$prepare->bindValue(':code_text', $pro_code, PDO::PARAM_INT);
+				$prepare->bindValue(':name_auther', $pro_auther, PDO::PARAM_STR);
+				$prepare->bindValue(':name_publisher', $pro_publisher, PDO::PARAM_STR);
+				$prepare->bindValue(':name_year', $pro_year, PDO::PARAM_STR);
+				$prepare->bindValue(':date', $pro_date, PDO::PARAM_STR);
+				$prepare->bindValue(':gazou', $pro_gazou, PDO::PARAM_STR);
 				$prepare->execute();
 
 				$db=null;
