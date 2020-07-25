@@ -80,9 +80,6 @@
         <br />
         出版年<br />
 		<?php print  h($pro_year); ?>
-        <br />
-        在庫数<br />
-		<?php print  h($pro_quantity); ?>
 		<br />
 		画像<br />
 		<?php print  $disp_gazou; ?>
