@@ -27,10 +27,6 @@
 				left outer join テーブル名2
 				on テーブル名1.フィールド名 = テーブル名2.フィールド名;
 				**************************************************************************************/
-
-//				$sql='SELECT code,name,price FROM mst_product WHERE price > 100';
-//				$sql='SELECT code,name,price FROM mst_product ORDER BY price DESC';
-
 				$prepare=$db->prepare($sql);
 				$prepare->execute();
 
@@ -48,14 +44,10 @@
 					}
 					print '注文番号：';
 					print h($rec['code_order']).'　';
-//					print '科目番号：';
-//					print h($rec['code_subject']).'　';
 					print '科目名：';
 					print h($rec['name_subject']).'　';
 					print '教員名：';
 					print h($rec['name_teacher']).'　';
-//					print '教科書番号：';
-//					print h($rec['code_text']).'　';
 					print '教科書名：';
 					print h($rec['name_text']).'　';
 					print '<br />';

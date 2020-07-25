@@ -33,7 +33,6 @@
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-				//説明
 				$sql='INSERT INTO dat_reserv(code_user, code_order) VALUES (:code_user, :code_order)';
 				$prepare=$db->prepare($sql);
 				$prepare->bindValue(':code_user', $pro_name, PDO::PARAM_STR);

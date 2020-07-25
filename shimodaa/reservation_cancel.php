@@ -41,7 +41,6 @@
 
 				$_SESSION['code'] = "$pro_code";
 				$pro_code_reservation = $rec['code_reservation'];
-//				$pro_code_user = $rec['name_user'];
 				$pro_code_order = $rec['code_order'];
 			}
 			catch(Exception $e)
@@ -54,10 +53,6 @@
 		<br />
         予約番号：
         <?php print '　　';print $pro_code_reservation; ?><br>
-<!--
-        ユーザー番号：
-        <?php print '　';print $pro_code_user ?><br>
--->
         注文番号：
         <?php print '　　';print $pro_code_order ?><br><br>
 		この予約を削除してよろしいですか？<br />
