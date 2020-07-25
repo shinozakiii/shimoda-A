@@ -39,6 +39,17 @@
 
 				$_SESSION['code_text'] = "$pro_code";
 
+				$pro_gazou_name=$rec['gazou'];
+
+                if($pro_gazou_name=='')
+				{
+					$disp_gazou='';
+				}
+				else
+				{
+					$disp_gazou='<img src="../gazou/'.$pro_gazou_name.'">';
+				}
+
 			}
 			catch(Exception $e)
 			{
@@ -55,6 +66,14 @@
 		<?php print h($rec['name_text']); ?><br />
 		価格<br />
 		<?php print h($rec['price']); ?><br />
+		著者<br />
+		<?php print h($rec['name_auther']); ?><br />
+		出版社<br />
+		<?php print h($rec['name_publisher']); ?><br />
+		出版年<br />
+		<?php print h($rec['name_year']); ?><br />
+		画像<br />
+		<?php print $disp_gazou; ?>
 		<br />
 		この教科書を削除してよろしいですか？<br />
 		<br />
