@@ -20,7 +20,11 @@
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-				$sql='SELECT * FROM mst_dat_order, mst_dat_sub, mst_dat_text WHERE mst_dat_order.code_order = :code';
+				$sql='SELECT * FROM mst_dat_order 
+				LEFT OUTER JOIN mst_dat_sub ON mst_dat_order.code_subject = mst_dat_sub.code_subject 
+				LEFT OUTER JOIN mst_dat_text ON mst_dat_order.code_text = mst_dat_text.code_text
+				WHERE mst_dat_order.code_order=:code';
+
 				$stmt=$db->prepare($sql);
 				$stmt->bindValue(':code', $pro_code, PDO::PARAM_INT);
 				$stmt->execute();
@@ -38,6 +42,7 @@
 				$_SESSION['code'] = "$pro_code";
 				$pro_code_subject = $rec['code_subject'];
 				$pro_name_subject = $rec['name_subject'];
+				$pro_name_teacher = $rec['name_teacher'];
 				$pro_code_text = $rec['code_text'];
 				$pro_name_text = $rec['name_text'];	
 			}
@@ -55,12 +60,18 @@
 		<br />
 		注文番号：
 		<?php print '　　'; print $pro_code; ?><br />
+<!--
 		科目番号：
 		<?php print '　　'; print $pro_code_subject; ?><br />
+-->
 		科目名：
 		<?php print '　　　'; print $pro_name_subject;?><br />
+		教員名：
+		<?php print '　　　'; print $pro_name_teacher;?><br />
+<!--
 		教科書番号：
 		<?php print '　'; print $pro_code_text;?><br />
+-->
 		教科書名：
 		<?php print '　　'; print $pro_name_text; ?><br /><br>
 		この教科書を予約してよろしいですか？<br /><br />

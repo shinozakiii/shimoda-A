@@ -58,7 +58,7 @@
 			}
 			else
 			{
-				print '上記の内容を追加します。<br />';
+				print '上記の内容で進めます。<br />';
 				print '<br />';
 
 				$_SESSION['name_user'] = "$pro_name";
@@ -69,7 +69,7 @@
 
 				print '<form method="post" action="user_add_done.php">';
 				print '<input type="button" onclick="history.back()" value="戻る">';
-				print '<input type="submit" value="登録">';
+				print '<input type="submit" value="進む">';
 				print '</form>';
 
 			}

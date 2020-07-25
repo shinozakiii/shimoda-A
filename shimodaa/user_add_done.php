@@ -34,8 +34,8 @@
 				exit();
 			}
 			
-			session_unset();// セッション変数をすべて削除
-			session_destroy();// セッションIDおよびデータを破棄
+//			session_unset();// セッション変数をすべて削除
+//			session_destroy();// セッションIDおよびデータを破棄
 
 			try
 			{
@@ -43,18 +43,43 @@
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-				$sql='INSERT INTO mst_dat_user(name_user,student_id,password) VALUES (:name_user,:student_id,:password)';
+				$sql='SELECT * FROM mst_dat_user WHERE student_id=:student_id';
 				$prepare=$db->prepare($sql);
-				$prepare->bindValue(':name_user', $pro_name, PDO::PARAM_STR);
 				$prepare->bindValue(':student_id', $pro_id, PDO::PARAM_INT);
-				$prepare->bindValue(':password', $pro_pass, PDO::PARAM_STR);
 				$prepare->execute();
 
-				$db=null;
+				$count=$prepare->rowCount();
+				$rec=$prepare->fetch(PDO::FETCH_ASSOC);
+				if($count>0){
+					$student_id = $rec['student_id'];
+					$password = $rec['password'];
+					if(($pro_id==$student_id)*($pro_pass==$password)){
+						$_SESSION['user_id'] = $rec['code_user'];
+					}
+					else{
+						print'入力情報が正しくありません。';
+						print'<a href="index.php">戻る</a>';
+						print '<br />';
+						exit();
+					}
+				}
+				else{
+					$sql='INSERT INTO mst_dat_user(name_user,student_id,password) VALUES (:name_user,:student_id,:password)';
+					$prepare=$db->prepare($sql);
+					$prepare->bindValue(':name_user', $pro_name, PDO::PARAM_STR);
+					$prepare->bindValue(':student_id', $pro_id, PDO::PARAM_INT);
+					$prepare->bindValue(':password', $pro_pass, PDO::PARAM_STR);
+					$prepare->execute();
 
-				print h($pro_name).' ';
-				print h($pro_id);
-				print 'を追加しました。<br />';
+					print h($pro_name).' ';
+					print h($pro_id);
+					print 'を追加しました。<br />';
+					$_SESSION['user_id'] = $db->lastInsertId();
+				}
+
+				print '<a href="my_page.php">マイページへ</a>';
+
+				$db=null;
 
 			}
 			catch(Exception$e)
@@ -63,6 +88,5 @@
 	 			exit();
 			}
 		?>
-		<a href="my_page.php">マイページへ</a>
 	</body>
 </html>
