@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>商品修正</title>
+		<link rel="stylesheet" href="shimodaa.css">
 	</head>
 	<body>
 		<?php
@@ -44,7 +45,7 @@
 
 				$dbh=null;
 
-				$disp_gazou='<img src="../gazou'.$pro_gazou.'">';
+				$disp_gazou='<img src="gazou/'.$pro_gazou.'">';
 				$_SESSION['gazou_name'] = "$pro_gazou";
 
 				
@@ -58,8 +59,7 @@
 			}
 		?>
 
-		商品修正<br />
-		<br />
+		<h1>商品修正</h1>
 		商品コード<br />
 		<?php print h($pro_code); ?>
 		<br />
@@ -79,7 +79,7 @@
 			出版年<br />
 			<input type="text" name="name_year" style="width:400px" value="<?php print $pro_year; ?>"><br />
 			<br />
-			<?php print $disp_gazou; ?>
+			<?php print $disp_gazou; ?><br>
 			画像を選んでください。<br />
 			<input type="file" name="gazou" style="width:400px"><br />
 			<br />
