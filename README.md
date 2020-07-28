@@ -22,7 +22,7 @@ git push origin master
 
 ステージ、コミット、プッシュ
 
-https://github.com/shinozakiii/shimoda-a.git開いて 
+https://github.com/shinozakiii/shimoda-a.git 開いて 
 
 
 変更できてたらOK！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
