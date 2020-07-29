@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>科目一覧</title>
+		<title>教科書一覧</title>
 	</head>
 	<body>
 		<?php
