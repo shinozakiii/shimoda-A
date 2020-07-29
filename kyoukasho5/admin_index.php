@@ -58,6 +58,9 @@
 				print '<input type="text" name="procode" style="width:20px">';
 				print '<input type="submit" value="決定">';
 				print '</form>';
+
+				print '<br />';
+				print '<a href="reservation_list.php">予約一覧</a><br />';
 			}
 			catch (Exception $e)
 			{
