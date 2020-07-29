@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>予約削除</title>
-		<link rel="stylesheet" href="shimodaa.css">
 	</head>
 	<body>
 		<?php
@@ -42,6 +41,7 @@
 
 				$_SESSION['code'] = "$pro_code";
 				$pro_code_reservation = $rec['code_reservation'];
+//				$pro_code_user = $rec['name_user'];
 				$pro_code_order = $rec['code_order'];
 			}
 			catch(Exception $e)
@@ -50,9 +50,14 @@
 	 			exit();
 			}
 		?>
-		<h1>予約削除</h1>
+		予約削除<br />
+		<br />
         予約番号：
         <?php print '　　';print $pro_code_reservation; ?><br>
+<!--
+        ユーザー番号：
+        <?php print '　';print $pro_code_user ?><br>
+-->
         注文番号：
         <?php print '　　';print $pro_code_order ?><br><br>
 		この予約を削除してよろしいですか？<br />

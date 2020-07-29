@@ -2,8 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-        <title>管理者パスワード</title>
-        <link rel="stylesheet" href="shimodaa.css">
+		<title>管理者パスワード</title>
 	</head>
 	<body>
 <?php

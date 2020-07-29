@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>教科書削除</title>
-		<link rel="stylesheet" href="shimodaa.css">
 	</head>
 	<body>
 		<?php
@@ -48,7 +47,7 @@
 				}
 				else
 				{
-					$disp_gazou='<img src="gazou/'.$pro_gazou_name.'">';
+					$disp_gazou='<img src="../gazou'.$pro_gazou_name.'">';
 				}
 
 			}
@@ -59,7 +58,8 @@
 			}
 		?>
 
-		<h1>教科書削除</h1>
+		教科書削除<br />
+		<br />
 		教科書コード<br />
 		<?php print h($rec['code_text']); ?><br />
 		教科書名<br />

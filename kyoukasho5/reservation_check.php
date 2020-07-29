@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>教科書予約</title>
-		<link rel="stylesheet" href="shimodaa.css">
 	</head>
 	<body>
 		<?php
@@ -45,22 +44,34 @@
 				$pro_name_subject = $rec['name_subject'];
 				$pro_name_teacher = $rec['name_teacher'];
 				$pro_code_text = $rec['code_text'];
-				$pro_name_text = $rec['name_text']; 
+				$pro_name_text = $rec['name_text'];	
 			}
 			catch(Exception $e)
 			{
 				echo 'エラーが発生しました。内容: ' . h($e->getMessage());
 	 			exit();
 			}
+			/*
+			
+			*/
 		?>
 
-		<h1>教科書予約</h1>
+		教科書予約<br />
+		<br />
 		注文番号：
 		<?php print '　　'; print $pro_code; ?><br />
+<!--
+		科目番号：
+		<?php print '　　'; print $pro_code_subject; ?><br />
+-->
 		科目名：
 		<?php print '　　　'; print $pro_name_subject;?><br />
 		教員名：
 		<?php print '　　　'; print $pro_name_teacher;?><br />
+<!--
+		教科書番号：
+		<?php print '　'; print $pro_code_text;?><br />
+-->
 		教科書名：
 		<?php print '　　'; print $pro_name_text; ?><br /><br>
 		この教科書を予約してよろしいですか？<br /><br />

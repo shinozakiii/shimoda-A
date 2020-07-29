@@ -3,18 +3,15 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>入力内容チェック</title>
-		<link rel="stylesheet" href="shimodaa.css">
 	</head>
 	<body>
 		<?php
 			require_once '_h.php';
 
-			
 			session_cache_expire(30);// 有効期間30分
 			session_start();
 
 			$max_size=4*1024*1024;
-
 
 			$pro_name=$_POST['name_text'];
 			$pro_price=$_POST['price'];
@@ -97,15 +94,11 @@
 				}
 				else
 				{
-					move_uploaded_file($pro_gazou['tmp_name'],'gazou/'.$pro_gazou['name']);
+					move_uploaded_file($pro_gazou['tmp_name'],'../gazou'.$pro_gazou['name']);
 					print '<img src="../gazou'.$pro_gazou['name'].'">';
 					print '<br />';
 				}
 			}
-
-			
-
-
 
 			if($pro_name=='' || $pro_price==''|| $pro_auther==''|| $pro_publisher==''|| $pro_year==''|| $pro_date==''|| $pro_gazou=='')
 			{
@@ -115,12 +108,9 @@
 			}
 			else
 			{
-				print '上記の内容を追加します。<br />';
+				print '上記の内容に修正します。<br />';
 				print '<br />';
 
-				print '<form method="post" action="admin_add_done.php">';
-//				print '<input type="hidden" name="name" value="'.$pro_name.'">';
-//				print '<input type="hidden" name="price" value="'.$pro_price.'">';
 				$_SESSION['name_text'] = "$pro_name";
 				$_SESSION['price'] = "$pro_price";
 				$_SESSION['name_auther'] = "$pro_auther";
@@ -129,9 +119,11 @@
 				$_SESSION['date'] = "$pro_date";
 				$_SESSION['gazou'] = $pro_gazou['name'];
 
+				print '<form method="post" action="admin_edit_done.php">';
 				print '<input type="button" onclick="history.back()" value="戻る">';
 				print '<input type="submit" value="登録">';
 				print '</form>';
+
 			}
 		?>
 	</body>

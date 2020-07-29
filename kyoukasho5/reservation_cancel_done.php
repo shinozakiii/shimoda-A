@@ -2,8 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>教科書削除</title>
-		<link rel="stylesheet" href="shimodaa.css">
+		<title>予約削除</title>
 	</head>
 	<body>
 		<?php
@@ -11,15 +10,16 @@
 			require_once '_h.php';
 
 			session_start();
-			if (isset($_SESSION['code_text'])) {
-				$pro_code=$_SESSION['code_text'];
+			if (isset($_SESSION['code'])) {
+				$pro_code=$_SESSION['code'];
 			}
+			
 			else{
-				print'教科書コードが受信できません。';
+				print'予約番号が受信できません。';
 				exit();
 			}
-			session_unset();// セッション変数をすべて削除
-			session_destroy();// セッションIDおよびデータを破棄
+//			session_unset();// セッション変数をすべて削除
+//			session_destroy();// セッションIDおよびデータを破棄
 
 			try
 			{
@@ -27,9 +27,9 @@
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-				$sql='DELETE FROM mst_dat_text WHERE code_text = :code_text';
+				$sql='DELETE FROM dat_reserv WHERE code_reservation = :code';
 				$prepare=$db->prepare($sql);
-				$prepare->bindValue(':code_text', $pro_code, PDO::PARAM_INT);
+				$prepare->bindValue(':code', $pro_code, PDO::PARAM_INT);
 				$prepare->execute();
 
 				$db=null;
@@ -43,6 +43,6 @@
 	 			exit();
 			}
 		?>
-		<a href="admin_index.php">戻る</a>
+		<a href="reservation_index.php">戻る</a>
 	</body>
 </html>

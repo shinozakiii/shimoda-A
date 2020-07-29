@@ -58,7 +58,7 @@
 					}
 					else{
 						print'入力情報が正しくありません。';
-						print'<a href="index.html">戻る</a>';
+						print'<a href="index.php">戻る</a>';
 						print '<br />';
 						exit();
 					}

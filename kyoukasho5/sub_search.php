@@ -3,10 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>科目検索</title>
-		<link rel="stylesheet" href="shimodaa.css">
 	</head>
 	<body>
-		<h1>科目一覧</h1>
 		<?php
 			require_once('_database_conf.php');
 			require_once('_h.php');
@@ -28,7 +26,7 @@
 				$stmt->execute();
 
 				//科目一覧
-				//print '科目一覧<br /><br />';
+				print '科目一覧<br /><br />';
 				
 				//DB切断
 				$dbh=null;

@@ -2,10 +2,9 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>登録情報</title>
+		<title>登録教科書一覧</title>
 	</head>
 	<body>
-		<h1>登録</h1><br>
 		<?php
 			require_once '_database_conf.php';
 			require_once '_h.php';
@@ -15,49 +14,47 @@
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-				$sql='SELECT * FROM mst_product';
-//				$sql='SELECT code,name,price FROM mst_product WHERE price > 100';
-//				$sql='SELECT code,name,price FROM mst_product ORDER BY price DESC';
-				$prepare=$db->prepare($sql);
-				$prepare->execute();
+				$sql='SELECT code_text,name_text,price FROM mst_dat_text WHERE 1';
+				$stmt=$db->prepare($sql);
+				$stmt->execute();
 
 				$db=null;
 
-				print '登録情報一覧<br /><br />';
+				print '教科書一覧<br /><br />';
 
 				while(true)
 				{
-					$rec=$prepare->fetch(PDO::FETCH_ASSOC);
+					$rec=$stmt->fetch(PDO::FETCH_ASSOC);
 					if($rec==false)
 					{
 						break;
 					}
-					print h($rec['code']).' ';
-					print h($rec['name']).' ';
-					print h($rec['name2']);
+					print h($rec['code_text']).' ';
+					print h($rec['name_text']).' ';
+					print h($rec['price']).' ';
 					print '<br />';
 				}
 
 				print '<br />';
-				print '<a href="user_add.php">登録情報入力</a><br />';
+				print '<a href="admin_add.php">教科書入力</a><br />';
 
 				print '<br />';
-				print '<form method="get" action="user_disp.php">';
-				print '登録情報表示：番号';
+				print '<form method="get" action="admin_disp.php">';
+				print '教科書表示：番号';
 				print '<input type="text" name="procode" style="width:20px">';
 				print '<input type="submit" value="決定">';
 				print '</form>';
 
 				print '<br />';
-				print '<form method="get" action="user_edit.php">';
-				print '登録情報修正：番号';
+				print '<form method="get" action="admin_edit.php">';
+				print '教科書修正：番号';
 				print '<input type="text" name="procode" style="width:20px">';
 				print '<input type="submit" value="決定">';
 				print '</form>';
 
 				print '<br />';
-				print '<form method="get" action="user_delete.php">';
-				print '登録情報削除：番号';
+				print '<form method="get" action="admin_delete.php">';
+				print '教科書削除：番号';
 				print '<input type="text" name="procode" style="width:20px">';
 				print '<input type="submit" value="決定">';
 				print '</form>';

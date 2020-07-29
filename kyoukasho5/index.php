@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 	<head>
 		<meta charset="UTF-8">
 		<title>利用者情報</title>
-		<link rel="stylesheet" href="shimodaa.css">
 	</head>
 	<body>
-		<h1>利用者情報入力</h1>
+		利用者情報入力<br /><br />
 
 		<form method="post" action="user_add_check.php">
 		名前を入力してください。<br />
@@ -17,7 +16,7 @@
 		<input type="password" name="password" style="width:100px"><br />
 		<br />
 		<input type="button" onclick="history.back()" value="戻る">
-		<input type="submit" value="登録">
+		<input type="submit" value="進む">
 
 		<br /><br />
 
